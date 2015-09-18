@@ -2,8 +2,10 @@
   "name": "seq.js",
   "version": "0.1.0",
   "description": "A collection of functions for working with sequences and collections",
-  "main": "seq.js",
+  "main": "lib/seq.js",
   "scripts": {
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
