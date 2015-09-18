@@ -45,18 +45,25 @@ export function partial(fn, ...args) {
     return (...rest) => fn.apply(this, args.concat(rest));
 }
 
-// Returns a function that executes function arguments sequantially passing
+// Returns a function that executes argument functions sequantially, passing
 // their return value as an argument to the next function.
 //
-// var cube = seq(square, square);
+// let cube = compose(square, square);
 // cube(2); // => 16
-export function seq(...fns) {
+export function compose(...fns) {
     return result => {
         for (let i = 0; i < fns.length; i++) {
             result = fns[i].call(this, result);
         }
         return result;
     };
+}
+
+// Returns a function that checks its arguments agains a predicate function
+// pred. If pred returns true, it runs a transformer function tr and returns its
+// result.
+export function cond(pred, tr) {
+    return arg => pred(arg) ? tr(arg) : arg;
 }
 
 // Returns a sequence of all but the first n elements of the 

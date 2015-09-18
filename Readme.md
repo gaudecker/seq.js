@@ -24,14 +24,14 @@ let add10 = partial(add, 10);
 add10(5); // => 15
 ```
 
-#### seq(...fns)
+#### compose(...fns)
 
-Returns a function that executes function arguments sequantially from left to
+Returns a function that executes argument functions sequantially from left to
 right passing their return value as an argument to the next function.
 
 ```js
 let square = n => n * n;
-let cube = seq(square, square);
+let cube = compose(square, square);
 cube(2); // => 16
 ```
 
